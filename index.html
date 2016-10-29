@@ -1,0 +1,184 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="reveal.js/css/theme/black.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <!-- Introdução -->
+        <section>
+          <section data-background-image="clojure_logo.png" data-background-size="30%">
+            <div style="margin-top: 60%">
+              <h1>Clojure</h1>
+            </div>
+          </section>
+
+          <section>
+            <blockquote>Clojure is a dynamic, general-purpose programming language, combining the approachability and interactive development of a scripting language with an efficient and robust infrastructure for multithreaded programming.</blockquote>
+          </section>
+
+          <section>
+            <blockquote>Clojure is a dialect of Lisp, and shares with Lisp the code-as-data philosophy and a powerful macro system. Clojure is predominantly a functional programming language, and features a rich set of immutable, persistent data structures.</blockquote>
+          </section>
+        </section>
+
+        <!-- História -->
+        <section>
+          <section>
+            <h1>O por que de uma Lisp moderna</h1>
+          </section>
+          <section>
+            <h1>A JVM</h1>
+          </section>
+        </section>
+
+        <!-- Sintaxe -->
+        <section>
+          <section>
+            A sintaxe de Lisp é muito simples:<br>
+            <code>(nome-da-função argumento1 argumento2 ... argumentoN)</code>
+          </section>
+          <section>
+            <h1>2 + 2</h1>
+          </section>
+          <section>
+              <code data-trim data-noescape>(+ 2 2)</code>
+          </section>
+          <section>
+            <h1>(2 + 2) + 2</h1>
+          </section>
+          <section>
+            <code>(+ (+ 2 2) 2)</code>
+          </section>
+          <section>
+            <h2>O verbo vem primeiro</h2>
+            <code lang="clojure">(<mark>+</mark> 2 2)</code>
+          </section>
+          <section>
+            <h2>Definindo funções</h2>
+            <pre>
+              <code lang="clojure">
+                ;; defn recebe 3 argumentos:
+                ;; o 1º é o nome da função
+                ;; o 2º são seus argumentos
+                ;; o 3º é o corpo da função
+                (defn hello-world [] 
+                  (println "Hello, world!"))
+
+                (hello-world) ;; => Hello, world!
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h1>Imutabilidade</h1>
+          </section>
+          <section>
+            <pre>
+              <code>
+(defn print-times [string start end] 
+  (when-not (>= start end) 
+    (do 
+      (println string) 
+      (recur string (+ start 1) end))))
+
+(print-times "hello, world!" 0 3)
+
+Output:
+hello, world!
+hello, world!
+hello, world!
+nil
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h1>Estruturas de dados imutáveis</h1>
+            <ul>
+              <li>Listas: <code>'(1 2 3 4 "foo")</code></li>
+              <li>Arrays: <code>[1 2 3 4 "foo"]</code></li>
+              <li>Mapas: <code>{:foo "bar" 1 :not-here}</code></li>
+              <li>Sets (como arrays, mas não permite duplicatas): <pre><code>#{1 2 3 4 4} ; => #{1 2 3 4}</code></pre></li>
+            </ul>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h1>Macros</h1>
+            Macros são funções especiais que geram código.
+            <pre>
+              <code>(defmacro nome [argumento1 argumento2 ... argumentoN] corpo)</code>
+            </pre>
+          </section>
+          <section>
+            <em>Mas eu não gosto de (+ 1 1). Eu quero escrever infixo! 1 + 1!</em>
+            <pre>
+              <code>
+(defmacro infix [a op b]
+  (list op a b))
+
+(infix 1 + 1) ;; Output: 2
+(infix 2 / 7) ;; Output 2/7
+              </code>
+            </pre>
+          </section>
+        </section>
+
+        <!-- Programação funcional -->
+        <section>
+          <h2>Programação Funcional</h2>
+          <ul>
+            <li>Concorrência segura (sem exclusão mútua)</li>
+            <li>Alto nível</li>
+            <li>Escalável</li>
+          </ul>
+        </section>
+
+        <!-- Pontos fortes -->
+        <section>
+          <h3>Pontos Fortes</h3>
+          <ul>
+            <li>Se roda na JVM, roda praticamente em qualquer lugar.</li>
+            <li>JVM tem altíssima performance, e faz concorrência muito bem.</li>
+            <li>Testada em produção por anos (exemplo mais recente: Netflix).</li>
+            <li>Mercado tem poucos profissionais, que são muito valorizados (exemplo no Brasil: Nubank).</li>
+            <li>É uma Lisp.</li>
+          </ul>
+        </section>
+
+        <!-- Pontos fracos -->
+        <section>
+          <h3>Pontos Fracos</h3>
+          <ul>
+            <li>Curva de aprendizado altíssima (linguagem + paradigma).</li>
+            <li>Pouco mercado, difícil adoção (no Brasil).</li>
+            <li>A JVM, as vezes, é overkill.</li>
+            <li>Não é tão simples de fazer deploy.</li>
+            <li>Código com certeza é mais denso que alternativas.</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h1>Conclusão</h1>
+        </section>
+
+
+        <section>
+          <h1>Perguntas?</h1>
+        </section>
+
+        <section>
+          <h1>Bibliografia</h1>
+          <ul>
+            <li><a href="http://clojure.org">Site oficial de Clojure</a></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+    <script src="reveal.js/js/reveal.js"></script>
+    <script>
+      Reveal.initialize();
+    </script>
+  </body>
+</html>
