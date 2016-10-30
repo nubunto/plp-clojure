@@ -57,21 +57,23 @@
             <code>(+ (+ 2 2) 2)</code>
           </section>
           <section>
-            <h2>O verbo vem primeiro</h2>
-            <code lang="clojure">(<mark>+</mark> 2 2)</code>
+            <img alt="" src="http://images.slideplayer.com/20/6213581/slides/slide_11.jpg"/>
+          </section>
+          <section>
+            <code>(- (* a b) c)</code>
           </section>
           <section>
             <h2>Definindo funções</h2>
             <pre>
               <code lang="clojure">
-                ;; defn recebe 3 argumentos:
-                ;; o 1º é o nome da função
-                ;; o 2º são seus argumentos
-                ;; o 3º é o corpo da função
-                (defn hello-world [] 
-                  (println "Hello, world!"))
+;; defn recebe 3 argumentos:
+;; o 1º é o nome da função
+;; o 2º são seus argumentos
+;; o 3º é o corpo da função
+(defn hello-world [] 
+  (println "Hello, world!"))
 
-                (hello-world) ;; => Hello, world!
+(hello-world) ;; => Hello, world!
               </code>
             </pre>
           </section>
@@ -81,11 +83,22 @@
           <section>
             <pre>
               <code>
-(defn print-times [string start end] 
-  (when-not (>= start end) 
+int i = 0;
+char* s = "hello world!";
+for(i = 0; i &lt; 10; <mark>i++</mark>) { // NOPE!
+  printf("%s\n", s);
+}
+              </code>
+            </pre>
+          </section>
+          <section>
+            <pre>
+              <code>
+(defn print-times [string end] 
+  (when-not (&lt;= end 0)
     (do 
-      (println string) 
-      (recur string (+ start 1) end))))
+      (println string)
+      (recur string (- 1 end)))))
 
 (print-times "hello, world!" 0 3)
 
