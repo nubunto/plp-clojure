@@ -95,7 +95,7 @@ for(i = 0; i &lt; 10; <mark>i++</mark>) { // NOPE!
             <pre>
               <code>
 (defn print-times [string end] 
-  (when-not (&lt;= end 0)
+  (when (&gt; end 0)
     (do 
       (println string)
       (recur string (- 1 end)))))
